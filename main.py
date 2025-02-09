@@ -1,26 +1,31 @@
 def main():
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
-    print(file_contents)
     words = file_contents.split()
-    print(len(words))
+    output = len(words)
+    print (f"{output} words found in the document")
 
 def times_appears():
     number_of_chars = {}
-    count = 0
-
     with open("books/frankenstein.txt") as f:
         file_contents = f.read()
     lowered_string = file_contents.lower()
 
     for char in lowered_string:
-        if char in number_of_chars:
-            number_of_chars[char] += 1
-        else:
-            number_of_chars[char] = 1
+        number_of_chars[char] = number_of_chars.get(char, 0) + 1
+        
     return number_of_chars
+def dict_to_list(dict):
+    count = 0
+    temp_list = []
+    for items in dict:
+        if items.isalpha():
+            print(f"The '{items}' character was found {dict[items]} times")
+        #temp_list.append({items:dict[items]})
+    return temp_list
 
-answer = times_appears()
-print(answer)
+main()
+post = times_appears()
+dict_to_list(post)
 
 
